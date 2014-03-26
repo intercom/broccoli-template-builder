@@ -1,0 +1,33 @@
+{
+  "name": "broccoli-template-builder",
+  "version": "0.0.0",
+  "description": "Compile client-side templates into 1 JavaScript file.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "broccoli-transform": "~0.1.1",
+    "mkdirp": "~0.3.5",
+    "rsvp": "~3.0.6",
+    "walk": "~2.3.1"
+  },
+  "devDependencies": {
+    "mocha": "~1.18.2",
+    "broccoli": "~0.4.1",
+    "chai": "~1.9.1",
+    "connect": "~2.14.3",
+    "ember-template-compiler": "~1.5.0-beta.4",
+    "handlebars": "~1.3.0",
+    "request": "~2.34.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "templates",
+    "broccoli-plugin"
+  ],
+  "author": "Moudy",
+  "license": "MIT"
+}
