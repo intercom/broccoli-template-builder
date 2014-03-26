@@ -11,7 +11,9 @@ module.exports = function (broccoli) {
     extensions: ['hbs']               // required
   , outputFile: 'assets/templates.js' // required
   , namespace: 'Ember.TEMPLATES'      // optional (defaults to 'JST')
-  , compile: compiler.precompile      // optional (defaults to using plain template string)
+  , compile: function (string) {      // optional (defaults to using plain template string)
+      return 'Ember.Handlebars.template('+compiler.precompile(string)+')';
+    }
   });
 
   return templates;

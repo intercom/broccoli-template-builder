@@ -9,7 +9,9 @@ module.exports = function (broccoli) {
     extensions: ['hbs']
   , namespace: 'Ember.TEMPLATES'
   , outputFile: 'assets/templates.js'
-  , compile: compiler.precompile
+  , compile: function (string) {
+      return 'Ember.Handlebars.template('+compiler.precompile(string)+')';
+    }
   });
 
   return templates;
