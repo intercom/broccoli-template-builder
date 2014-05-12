@@ -7,7 +7,7 @@ var expect = require('chai').expect;
 var PORT = 4321;
 var path = '/assets/templates.js';
 var url = 'http://localhost:'+PORT+path;
-http.createServer(app).listen(PORT);
+var server = http.createServer(app).listen(PORT);
 
 describe('broccoli-template-compiler', function () {
 
@@ -45,5 +45,7 @@ describe('broccoli-template-compiler', function () {
       done();
     });
   });
+
+  after(function () {server.close();});
 
 });
