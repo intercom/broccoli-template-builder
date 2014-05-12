@@ -1,5 +1,14 @@
+# Broccoli Template Builder
+ [![Build Status](https://travis-ci.org/moudy/broccoli-template-builder.svg)](https://travis-ci.org/moudy/broccoli-template-builder)
+
 A flexible Broccoli transform plugin for client-side templates.
 
+## Install
+```
+npm install --save broccoli-template-builder
+```
+
+## Example
 ``` js
 module.exports = function (broccoli) {
   var compiler = require('ember-template-compiler');
