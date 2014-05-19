@@ -4,6 +4,7 @@ var mkdirp = require('mkdirp');
 var walk = require('walk');
 var fs = require('fs');
 var path = require('path');
+var jsStringEscape = require('js-string-escape');
 
 DEFAULTS = {
   namespace: 'JST'
@@ -56,6 +57,7 @@ BroccoliTemplateBuilder.prototype.transform = function (srcDir, destDir) {
       var path = root+'/'+fileStats.name;
       fs.readFile(path, {encoding: 'utf8'}, function (err, string) {
         var name = buildName(path);
+        string = jsStringEscape(string);
         string = compile(string);
         string = namespace(name, string);
         files.push(string);
