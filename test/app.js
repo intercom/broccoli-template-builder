@@ -1,15 +1,19 @@
-var http = require('http');
+const http = require('http');
+const connect = require('connect');
+const { loadBrocfile, Builder } = require('broccoli');
+const Watcher = require('broccoli/lib/watcher');
+const middleware = require('broccoli/lib/middleware');
 
-var broccoli = require('broccoli');
-var Watcher = require('broccoli/lib/watcher');
-var middleware = require('broccoli/lib/middleware');
-
-var tree = broccoli.loadBrocfile();
-var builder = new broccoli.Builder(tree);
+var brocfile = loadBrocfile();
+var builder = new Builder(brocfile());
 var watcher = new Watcher(builder);
-var assets = middleware(watcher);
+watcher.start()
 
-var app = exports.app = require('connect')();
+var assets = middleware(watcher);
+var app = connect();
 app.use(assets);
 
 if (!module.parent) http.createServer(app).listen(4321);
+
+exports.watcher = watcher;
+exports.app = app;

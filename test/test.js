@@ -1,13 +1,13 @@
-var fs = require('fs');
-var http = require('http');
-var request = require('request');
-var app = require('./app').app;
-var expect = require('chai').expect;
+const fs = require('fs');
+const http = require('http');
+const request = require('request');
+const { app, watcher } = require('./app');
+const { expect } = require('chai');
 
-var PORT = 4321;
-var path = '/assets/templates.js';
-var url = 'http://localhost:'+PORT+path;
-var server = http.createServer(app).listen(PORT);
+const PORT = 4321;
+const path = '/assets/templates.js';
+const url = 'http://localhost:'+PORT+path;
+const server = http.createServer(app).listen(PORT);
 
 describe('broccoli-template-compiler', function () {
 
@@ -34,7 +34,7 @@ describe('broccoli-template-compiler', function () {
 
   it('compiles', function (done) {
     request(url, function (error, response, body) {
-      expect(body).to.include('compilerInfo');
+      expect(body).to.include('compiler');
       done();
     });
   });
@@ -46,6 +46,9 @@ describe('broccoli-template-compiler', function () {
     });
   });
 
-  after(function () {server.close();});
+  after(function () {
+    server.close();
+    watcher.quit();
+  });
 
 });
