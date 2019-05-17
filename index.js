@@ -57,7 +57,6 @@ BroccoliTemplateBuilder.prototype.transform = function (srcDir, destDir) {
       var path = root+'/'+fileStats.name;
       fs.readFile(path, {encoding: 'utf8'}, function (err, string) {
         var name = buildName(path);
-        string = jsStringEscape(string);
         string = compile(string);
         string = namespace(name, string);
         files.push(string);
